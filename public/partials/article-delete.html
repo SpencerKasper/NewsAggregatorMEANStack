@@ -1,0 +1,20 @@
+<div style="text-align:center;">
+    <div class="border">
+    <div class="title">
+        <img src="images/DeleteAnArticle.png">
+    </div>
+    <ul class="panel panel-default" style="background-color:lightgreen">
+        <li>
+            <a href="{{article.URL}}" style="font-size:20px;color:darkgreen">{{article.title}}</a>
+        </li>
+        <li style="color:saddlebrown"><strong>Votes: </strong>{{article.votes}}</li>
+        <li style="color:saddlebrown"><strong>User: </strong>{{article.user}}</li>
+    </ul>
+
+    <input type="button" value="Delete" class="btn btn-danger" style="background-color:saddlebrown" ng-click="delete()" />
+    <a class="btn btn-success" href="/#/">Cancel, Return to Home</a>
+    <p class="warning">
+        <strong>Are you sure you want to delete this article?</strong>
+    </p>
+    </div>
+</div>

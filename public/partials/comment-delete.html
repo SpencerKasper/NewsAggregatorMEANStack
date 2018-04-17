@@ -1,0 +1,26 @@
+<div>
+    <div class="top-row-home-btn">
+        <a href="/#/" class="btn btn-success" style="background-color:darkgreen">Home</a>
+        <a class="btn btn-success" style="background-color:darkgreen" href="/#/add">Add a New Article</a>
+    </div>
+</div>
+<div style="text-align:center">
+    <div class="border">
+    <div class="title">
+        <img src="images/DeleteAComment.png">
+    </div>
+
+    <ul class="panel panel-default" style="background-color:lightgreen">
+        <li style="color:saddlebrown"><strong>Date: </strong>{{comment.date}}</li>
+        <li style="color:saddlebrown"><strong>Votes: </strong>{{comment.votes}}</li>
+        <li style="color:saddlebrown"><strong>User: </strong>{{comment.userName}}</li>
+        <li style="color:saddlebrown">{{comment.body}}</li>
+    </ul>
+
+    <input type="button" value="Delete" class="btn btn-danger" style="background-color:saddlebrown" ng-click="delete()" />
+    <a class="btn btn-success" href="/#/viewcomments/{{articleid}}">Cancel, Return to Comments</a>
+    <p class="warning">
+        <strong>Are you sure you want to delete this comment?</strong>
+    </p>
+    </div>
+</div>

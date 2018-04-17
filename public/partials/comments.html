@@ -1,0 +1,143 @@
+<div ng-model="loggedIn" ng-switch on="loggedIn">
+    <div ng-switch-when="true">
+        <div class="top-row-home-btn">
+            <div ng-model="isMod" ng-switch on="isMod" >
+                <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/">Home</a>
+                <a ng-switch-when="true" class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/moderator/makeModerator">Manage Moderators</a>
+                <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/add">Add a New Article</a>
+                <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" ng-click="signOut()">Sign Out</a>
+            </div>
+
+            <div ng-switch-default>
+                    <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/">Home</a>
+                <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/add">Add a New Article</a>
+                <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" ng-click="signOut()">Sign Out</a>
+            </div>
+            
+            <p ng-model="isMod" ng-switch on="isMod" style="text-align:right;">
+                <strong ng-switch-when="true" style="color:darkgreen;">Moderator Account</strong>
+            </p>
+        </div>
+        <p class="modName">
+            <strong>Logged in as: </strong>{{userName}}
+        </p>
+    </div>
+
+    <div ng-switch-default>
+        <div class="top-row-home-btn">
+            <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/signIn">Sign in</a>
+            <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/signUp">Register</a>
+        </div>
+    </div>
+<div>
+
+<div class="search">
+        <strong>Search By:</strong> 
+        <select style="margin-right:10px;" ng-model="queryBy">
+            <option value="body">Comment Content</option>
+            <option value="userName">User Name</option>
+        </select>   
+        <input ng-model="query[queryBy]" />
+    </div>
+
+<div class="border">
+    <div class="title">
+        <img src="images/Comments.png">
+    </div>
+<div class="scrollable">
+    <ul class="panel panel-default" style="background-color:lightgreen;" ng-repeat="comment in article.comments | orderBy:sortFunc | filter:query">
+        <li>
+            <div ng-model="loggedIn" ng-switch on="loggedIn">
+                <div ng-switch-when="true">
+                    <a class="up-vote" ng-click="upVote(comment._id,comment.votes)">
+                        <i class="glyphicon glyphicon-plus"></i>
+                    </a>
+                </div>
+
+                <div ng-switch-default>
+                    <br>
+                </div>
+            </div>
+            <br>
+            <div style="padding-left:3em">
+                <strong>User: </strong>{{comment.userName}}
+            </div>
+            
+        </li>
+        <li style="padding-left:3em;">
+            <strong>Date: </strong>{{comment.date}}
+        </li>
+        <li style="padding-left:3em;">
+            <strong>Votes: </strong>{{comment.votes}}
+        </li>
+        <li style="padding-left:3em;">
+            <p>
+                {{comment.body}}
+            </p>
+        </li>
+
+        <div ng-model="isMod" ng-switch on="isMod">
+            <div ng-switch-when="true">
+                <li style="padding-left:3em;">               
+                    <a class="btn btn-danger" style="background-color: saddlebrown" href="/#/viewcomments/delete/{{article._id}}/{{comment._id}}">
+                        Delete This Comment
+                    </a>
+                </li>
+            </div>
+
+            <div ng-switch-when="false">
+                <li style="padding-left:3em;">
+                    <a ng-if="comment.userName === userName" ng-src="comment.user" class="btn btn-danger" style="background-color: saddlebrown" href="/#/viewcomments/delete/{{article._id}}/{{comment._id}}">
+                        Delete This Comment
+                    </a>
+                </li>
+            </div>
+        </div>
+
+        <li>
+            <div ng-model="loggedIn" ng-switch on="loggedIn">
+                <div ng-switch-when="true">
+                    <a ng-click="downVote(comment._id,comment.votes)" style="color:saddlebrown">
+                        <i class="glyphicon glyphicon-minus"></i>
+                    </a>
+                </div>
+
+                <div ng-switch-default>
+                    <br>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+</div>
+
+<div ng-model="loggedIn" ng-switch on="loggedIn">
+    <div ng-switch-when="true">
+    <h2 style="color:darkgreen">Add Your Comment</h2>
+
+    <form>
+        <div class="form-group">
+            <strong>Today's Date: </strong>{{date | date: 'MM/dd/yyyy'}}
+        </div>
+
+        <div class="form-group">
+            <strong>User Name: </strong>
+            <input type="text" class="form-control" ng-model="userName" readOnly>
+        </div>
+
+        <div class="form-group">
+            <strong>Comment: </strong>
+            <input type="text" class="form-control" ng-model="newComment.body">
+        </div>
+
+        <div>
+            <input type="hidden" name="date" value="{{date | date: 'MM/dd/yyyy'}}">
+        </div>
+
+        <div>
+            <input class="btn btn-success" type="button" value="Add Comment" ng-click="save(newComment)"></input>
+            <a href="/#/" class="btn btn-danger" style="background-color:saddlebrown">Cancel</a>
+        </div>    
+    </form>
+    </div>
+</div>

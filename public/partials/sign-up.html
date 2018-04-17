@@ -1,0 +1,39 @@
+<div class="title">
+    <h1>Register</h1>
+</div>
+
+<form>
+    <div class="form-group">
+        <strong>User Name: </strong>
+        <input type="text" class="form-control" ng-model="user.userName">
+    </div>
+
+    <div class="form-group">
+        <strong>Password: </strong>
+        <input type="password" class="form-control" ng-model="user.password">
+    </div>
+
+    <div class="form-group">
+        <strong>Re-Enter Password: </strong>
+        <input type="password" class="form-control" ng-model="user.password1">
+    </div>
+
+    <div class="form-group">
+        <strong>First Name: </strong>
+        <input type="text" class="form-control" ng-model="user.firstName">
+    </div>
+
+    <div class="form-group">
+        <strong>Last Name: </strong>
+        <input type="text" class="form-control" ng-model="user.lastName">
+    </div>
+
+    <div >
+        <input class="btn btn-success" type="button" value="Register" ng-click="register()"></input>
+        <a href="/#/" class="btn btn-danger" style="background-color:saddlebrown">Cancel</a>
+    </div>    
+</form>
+
+<div>
+    <img src="images/shrekCute.jpg">
+</div>

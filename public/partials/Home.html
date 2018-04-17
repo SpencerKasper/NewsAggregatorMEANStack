@@ -1,0 +1,114 @@
+    <div ng-model="loggedIn" ng-switch on="loggedIn">
+        <div ng-switch-when="true">
+            <div class="top-row-home-btn">
+                <div ng-model="isMod" ng-switch on="isMod" >
+                    <a ng-switch-when="true" class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/moderator/makeModerator">Manage Moderators</a>
+                    <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/add">Add a New Article</a>
+                    <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" ng-click="signOut()">Sign Out</a>
+                </div>
+
+                <div ng-switch-default>
+                    <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/add">Add a New Article</a>
+                    <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" ng-click="signOut()">Sign Out</a>
+                </div>
+                
+                <p ng-model="isMod" ng-switch on="isMod" style="text-align:right;">
+                    <strong ng-switch-when="true" style="color:darkgreen;">Moderator Account</strong>
+                </p>
+            </div>
+            <p class="modName">
+                <strong>Logged in as: </strong>{{userName}}
+            </p>
+        </div>
+
+        <div ng-switch-default>
+            <div class="top-row-home-btn">
+                <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/signIn">Sign in</a>
+                <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/signUp">Register</a>
+            </div>
+        </div>
+    <div>
+
+    <div class="search">
+        <strong>Search By:</strong> 
+        <select style="margin-right:10px;" ng-model="queryBy">
+            <option value="title">Title</option>
+            <option value="user">User Name</option>
+        </select>   
+        <input ng-model="query[queryBy]" />
+    </div>
+
+    <div class="border">
+        <div class="title" >
+            <img src="images/Title.png">
+        </div>
+        <div class="scrollable">
+        <ul class="panel panel-default" style="background-color :lightgreen" ng-repeat="article in articles | filter:query">
+            <li>
+                <div ng-model="loggedIn" ng-switch on="loggedIn">
+                    <div ng-switch-when="true">
+                        <a class="up-vote" ng-click="upVote(article._id, article.votes)" style="color:saddlebrown">
+                            <i class="glyphicon glyphicon-plus"></i>
+                        </a>
+                    </div>
+
+                    <div ng-switch-default>
+                        <br>
+                    </div>
+                </div>
+                <br>
+                <div style="padding-left:3em">
+                    <a style="color:darkgreen;font-size:20px;" href="{{article.URL}}" target="_blank">{{article.title}}</a>
+                </div>
+            </li>
+            <li style="padding-left:3em;color:saddlebrown"><strong>Votes: </strong>{{article.votes}}</li>
+            <li>
+                <div style="padding-left:3em;color:saddlebrown">
+                    <strong>User: </strong>{{article.user}}
+                </div>
+            </li>
+
+            <li style="padding-left:3em">                
+                <div ng-model="isMod" ng-switch on="isMod">
+                    <div ng-switch-when="true">
+                        <a class="btn btn-success" href="/#/viewcomments/{{article._id}}">View Comments</a>
+                        <a class="btn btn-danger" style="background-color: saddlebrown" href="/#/article/delete/{{article._id}}">
+                            Remove This Article 
+                        </a>
+                    </div>
+
+                    <div ng-switch-when="false">
+                        <a class="btn btn-success" href="/#/viewcomments/{{article._id}}">View Comments</a>
+                        <a ng-if="article.user === userName" ng-src="article.user" class="btn btn-danger" style="background-color: saddlebrown" href="/#/article/delete/{{article._id}}">
+                            Remove This Article 
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div ng-model="loggedIn" ng-switch on="loggedIn">
+                    <div ng-switch-when="true">
+                        <a ng-click="downVote(article._id, article.votes)" style="color:saddlebrown">
+                            <i class="glyphicon glyphicon-minus"></i>
+                        </a>
+                    </div>
+
+                    <div ng-switch-default>
+                        <br>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div>
+            <img src="images/theWholeCrew.jpg">
+            <img src="images/theBoys.jpg">
+        </div>
+        </div>
+    </div>
+
+    <div>
+        <img src="images/shrek1.jpg">
+        <img src="images/shrek2.jpg">
+    </div>
+

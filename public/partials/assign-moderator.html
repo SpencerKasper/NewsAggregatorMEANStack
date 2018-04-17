@@ -1,0 +1,60 @@
+<div ng-model="loggedIn" ng-switch on="loggedIn">
+        <div ng-switch-when="true">
+            <div class="top-row-home-btn">
+                <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/">Home</a>
+                <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/add">Add a New Article</a>
+                <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" ng-click="signOut()">Sign Out</a>
+                <p ng-model="isMod" ng-switch on="isMod" style="text-align:right;">
+                    <strong ng-switch-when="true" style="color:darkgreen;">Moderator Account</strong>
+                </p>
+            </div>
+            <p class="modName">
+                <strong>Logged in as: </strong>{{userName}}
+            </p>
+
+            <div class="title">
+                <img src="images/ManageModerators.png">
+            </div>
+
+            <div style="text-align:center;">
+                <div class="warning">
+                    <strong style="color:red">WARNING: </strong> A moderator has the ability to delete any 
+                    comments and articles on the site.  Be sure the user selected below looks
+                    accurate.
+                </div>
+            </div>
+
+            <form>
+                <div class="form-group">
+                    <strong>Make {{selectedUser.userName}} a moderator?</strong><br>
+                        <select ng-model="selectedUser" ng-options="user.userName for user in users">
+                        </select>
+                </div>
+
+                <div class="form-group">
+                    <strong>Remove {{selectedUserRemove.userName}} as moderator?</strong><br>
+                        <select ng-model="selectedUserRemove" ng-options="mod.userName for mod in mods">
+                        </select>
+                </div>
+
+                <div>
+                    <input class="btn btn-success" type="button" value="Make Moderator" ng-click="makeModerator(selectedUser)"></input>
+                    <input style="background-color:saddlebrown;" class="btn btn-danger" type="button" value="Remove Moderator" ng-click="removeModerator(selectedUserRemove)"></input>
+                </div>    
+            </form>
+
+            <div>
+                <img src="images/shrekCute.jpg">
+            </div>
+        </div>
+
+        <div ng-switch-default>
+            <div class="top-row-home-btn">
+                <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/">Home</a>
+                <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/signIn">Sign in</a>
+                <a class="btn btn-success" style="background-color:rgb(18, 99, 18);" href="/#/signUp">Register</a>
+                <h1>You are not authorized to be here!</h1>
+            </div>
+        </div>
+    <div>
+
